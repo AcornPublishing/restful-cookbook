@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <title>ALPS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 25px;
+        }
+    
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="markdown-body">
+        <h1>Partial Submit Profile</h1>
+
+<p>Partial Submit profile for <a href="http://b.mamund.com/rwmbook">RWMBook</a>. Services <a href="http://b.mamund.com/rfc2119">SHOULD</a> allow client applications to submit partially completed FORM data and, afer accepting the data, <a href="http://b.mamund.com/rfc2119">SHOULD</a> continue to redirect the client to a form that asks for the remaining inputs. Services <a href="http://b.mamund.com/rfc2119">SHOULD</a> also provide a <code>cancel</code> option if client appilcations are unable or unwilling to complete the minimum requiested data form.</p>
+
+<ul>
+<li><a href="partial-submit.json">ALPS</a></li>
+<li><a href="docs/asd.html">Application State Diagram</a></li>
+<li>Semantic Descriptors
+
+<ul>
+<li><a href="docs/semantic.completed.html">completed</a> (semantic), Completed state and actions</li>
+<li><a href="docs/idempotent.doCancelSubmit.html">doCancelSubmit</a> (idempotent), Cancel (abandon) form submission</li>
+<li><a href="docs/idempotent.doFinalSubmit.html">doFinalSubmit</a> (idempotent), Final (completed) submit of the form</li>
+<li><a href="docs/idempotent.doPartialSubmit.html">doPartialSubmit</a> (idempotent), Submit data using this form</li>
+<li><a href="docs/idempotent.doResetSubmit.html">doResetSubmit</a> (idempotent), Reset form inputs to intitial state</li>
+<li><a href="docs/safe.goForm.html">goForm</a> (safe), Go to the input form</li>
+<li><a href="docs/safe.goHome.html">goHome</a> (safe), Go to the Home resource</li>
+<li><a href="docs/semantic.home.html">home</a> (semantic), Home (or start) document</li>
+<li><a href="docs/semantic.href.html">href</a> (semantic), URL of the form.</li>
+<li><a href="docs/semantic.input.html">input</a> (semantic), Input for the submit form</li>
+<li><a href="docs/semantic.inputForm.html">inputForm</a> (semantic), Form object and actions</li>
+<li><a href="docs/semantic.rel.html">rel</a> (semantic), Relation value of the form URL</li>
+<li><a href="docs/semantic.title.html">title</a> (semantic), Text title of the form URL</li>
+<li><a href="docs/semantic.type.html">type</a> (semantic), media type string of form URL</li>
+</ul></li>
+<li>Tags
+
+<ul>
+<li><a href="docs/tag.choreography.html">choreography</a></li>
+<li><a href="docs/tag.ontology.html">ontology</a></li>
+<li><a href="docs/tag.taxonomy.html">taxonomy</a></li>
+</ul></li>
+</ul>
+
+    </div>
+</body>
+</html>

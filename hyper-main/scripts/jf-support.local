@@ -1,0 +1,18 @@
+# FORMS+ support
+
+GOTO WITH-URL localhost:3359/list/
+
+FJ METADATA
+FJ LINKS
+FJ ITEMS
+
+GOTO WITH-NAME list
+GOTO WITH-FORM filter WITH-QUERY {"status":"active"}
+
+EXIT
+
+#
+# EOF
+#
+
+

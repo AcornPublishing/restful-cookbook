@@ -1,0 +1,10 @@
+# #############################
+# i-hyper ACTIVATE DISPLAY PATH
+# @mamund - 2021-06
+# #############################
+
+# simple request and then JSONPath
+ACTIVATE WITH-URL http://rwcbook14.up.railway.app/task/
+DISPLAY CONTENT-TYPE
+DISPLAY PATH $..items[*].href
+

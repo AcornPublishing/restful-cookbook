@@ -1,0 +1,24 @@
+digraph application_state_diagram {
+  graph [
+    labelloc="t";
+    fontname="Helvetica"
+    label="Work-In-Progress (WIP) Profile";
+    URL="index.html" target="_parent"
+  ];
+  node [shape = box, style = "bold,filled" fillcolor="lightgray"];
+
+    wipitem [margin=0.02, label=<<table cellspacing="0" cellpadding="5" border="0"><tr><td>wipitem<br />(wiplink)<br /></td></tr></table>>,shape=box URL="docs/semantic.wipitem.html" target="_parent"]
+    wiplist [margin=0.02, label=<<table cellspacing="0" cellpadding="5" border="0"><tr><td>wiplist<br />(wiplink)<br /></td></tr></table>>,shape=box URL="docs/semantic.wiplist.html" target="_parent"]
+
+    home -> home [label = "goHome, home (safe)" URL="docs/safe.goHome.html" target="_parent" fontsize=13];
+    home -> wiplist [label = "goListWIP, list collection wip (safe)" URL="docs/safe.goListWIP.html" target="_parent" fontsize=13];
+    wipitem -> home [label = "goHome, home (safe)" URL="docs/safe.goHome.html" target="_parent" fontsize=13];
+    wipitem -> wipitem [label=<<table  border="0"><tr><td align="left" href="docs/idempotent.doShareWIP.html">doShareWIP (idempotent)</td></tr><tr><td align="left" href="docs/idempotent.doStatusWIP.html">doStatusWIP (idempotent)</td></tr><tr><td align="left" href="docs/idempotent.doSubmitWIP.html">doSubmitWIP (idempotent)</td></tr><tr><td align="left" href="docs/idempotent.doUpdateWIP.html">doUpdateWIP (idempotent)</td></tr><tr><td align="left" href="docs/safe.goReadWIP.html">goReadWIP (safe)</td></tr></table>> fontsize=13];
+    wipitem -> wiplist [label=<<table  border="0"><tr><td align="left" href="docs/idempotent.doCancelWIP.html">doCancelWIP (idempotent)</td></tr><tr><td align="left" href="docs/safe.goListWIP.html">goListWIP (safe)</td></tr></table>> fontsize=13];
+    wiplist -> home [label = "goHome, home (safe)" URL="docs/safe.goHome.html" target="_parent" fontsize=13];
+    wiplist -> wipitem [label=<<table  border="0"><tr><td align="left" href="docs/idempotent.doCreateWIP.html">doCreateWIP (idempotent)</td></tr><tr><td align="left" href="docs/safe.goReadWIP.html">goReadWIP (safe)</td></tr></table>> fontsize=13];
+    wiplist -> wiplist [label=<<table  border="0"><tr><td align="left" href="docs/safe.goFilterWIP.html">goFilterWIP (safe)</td></tr><tr><td align="left" href="docs/safe.goListWIP.html">goListWIP (safe)</td></tr></table>> fontsize=13];
+
+    home [URL="docs/semantic.home.html" target="_parent"]
+
+}

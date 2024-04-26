@@ -1,0 +1,146 @@
+{ 
+  "$schema": "https://alps-io.github.io/schemas/alps.json",
+  "alps": 
+  {
+    "version":"1.0",
+    "title": "Work-In-Progress (WIP) Profile",
+    "doc": {"value": "Work-In-Progress (WIP) profile for [RWMBook](b.mamund.com/rwmbook). Services [SHOULD](http:/b.mamund.com/rfc2119) present a generalized WIP flow for managing the state of a process. For this profile, the following pre-defined link relation values [MAY](b.mamund.com/rfc2119) appear: `cancel`, `create`, `filter`, `home`, `list`, `read`, `share`, `status`, `submit`, `update`.\n\nTypically, services support the creation, update, and ultimately, the final submit of a WIP record. Additional workflow options include getting a (filtered) list of existing WIP records, fetching a single record, updating the status of a single record, sharing an existing WIP record for later retrieval, and the cancelling of an existing WIP record."},
+    "descriptor" : [
+      {"id": "href", "type": "semantic", "def": "https://schema.org/url",
+      "title" : "URL of the WIP step",
+      "tag": "ontology",
+        "doc": {"value": "The URL of the Work-in-Progress (WIP) step. This [SHOULD](http://b.mamund.com/rfc2119) be one of the well-known WIP labels (see top of this document)."}
+      },
+      {"id": "rel", "type": "semantic", "def": "https://schema.org/linkRelationship",
+        "title": "Relationship value of the WIP link.",
+        "tag": "ontology",
+        "doc": {"value": "The link relation value of an available related action. This value [SHOULD](http://b.mamund.com/rfc2119) also include the link relation value of `wip`."}
+      },
+      {"id": "title", "type": "semantic", "def": "https://schema.org/title",
+        "title": "Text title for the WIP link.",
+        "tag": "ontology",
+        "doc": {"value": "Human readable title associated with the link."}
+      },
+      {"id": "type", "type": "semantic", "def": "https://schema.org/contentType",
+        "title": "Media type hint.",
+        "tag": "ontology",
+        "doc": {"value": "Optional media type identifier string. It [SHOULD](http://b.mamund.com/rfc2119) be one defined by [IANA](http://b.mamund.com/iana-formats) or some other authoritative source."}
+      },
+      
+      {"id": "wiplink", "type": "semantic", 
+        "title": "WIP Link property object",
+        "tag": "taxonomy",
+        "descriptor": [
+          {"href": "#href"},
+          {"href": "#rel"},
+          {"href": "#title"},
+          {"href": "#type"}
+        ],
+        "doc" : {"value": "Represents one or more WPI Link elements containing the available related properties"}
+      },
+      
+     {"id": "home", "type": "semantic", 
+       "title": "Home resource.",
+       "tag": "taxonomy",
+       "descriptor": [
+          {"href": "#goListWIP"},
+          {"href": "#goHome"}
+       ],
+       "doc" : {"value" : "Home represents any current document or starting point in the WIP flow."}
+      },
+
+      {"id": "wiplist", "type": "semantic", 
+        "title": "WIP List resource",
+        "tag": "taxonomy",
+        "rel": "collection wip",
+        "descriptor":[
+           {"href": "#wiplink"},
+           {"href": "#goFilterWIP"},
+           {"href": "#goReadWIP"},
+           {"href": "#doCreateWIP"},
+           {"href": "#goListWIP"},
+           {"href": "#goHome"}
+        ],
+        "doc": {"value": "Represents the list of available WIP records."}
+      },
+      
+      {"id": "wipitem", "type": "semantic",
+        "title": "A single WIP record.",
+        "tag": "taxonomy",
+        "rel": "item wip",
+        "descriptor": [
+          {"href": "#wiplink"},
+          {"href": "#goReadWIP"},
+          {"href": "#doUpdateWIP"},
+          {"href": "#doStatusWIP"},
+          {"href": "#doSubmitWIP"},
+          {"href": "#doCancelWIP"},
+          {"href": "#doShareWIP"},
+          {"href": "#goListWIP"},
+          {"href": "#goHome"}
+        ]
+      },
+
+      {"id": "goHome", "name": "home", "rel": "self", "type": "safe", "rt":"#home",
+        "title": "Go to the Home resource.",
+        "tag": "choreography",
+        "rel": "home",
+        "doc": {"value": "A safe, idempotent action to return to the Home document"}
+      },
+      {"id": "goListWIP", "name": "list", "rel": "list-wip", "type": "safe", "rt": "#wiplist",
+        "title": "Go to the WIP list resource.",
+        "tag": "choreography",
+        "rel": "list collection wip",
+        "doc": {"value": "An safe idempotent action to return a list of WIP records."}
+      },
+      {"id": "goReadWIP", "name": "read", "rel": "read-wip", "type": "safe", "rt": "#wipitem",
+        "title": "Retrieve a single AIP resource.",
+        "tag": "choreography",
+        "rel": "item read wip",
+        "doc": {"value": "An safe idempotent action to return a single WIP record."}
+      },
+      {"id": "doCreateWIP", "name": "create", "rel": "create-wip", "type": "idempotent", "rt": "#wipitem",
+        "title": "Create a new WIP resource",
+        "tag": "choreography",
+        "rel": "create wip",
+        "doc": {"value": "An unsafe idempotent action to create a new WIP."}
+      },
+      {"id": "goFilterWIP", "name": "filter", "rel": "filter-wip", "type": "safe", "rt": "#wiplist",
+        "title": "Get a filtered list of WIP records",
+        "tag": "choreography",
+        "rel": "filter wip",
+        "doc": {"value": "An unsafe idempotent action to create a new WIP."}
+      },
+      {"id": "doUpdateWIP", "name": "update", "rel": "update-wip", "type": "idempotent", "rt": "#wipitem",
+        "title": "Update a single existing WIP resource",
+        "tag": "choreography",
+        "rel": "update wip",
+        "doc": {"value": "An unsafe idempotent action to update an existing WIP."}
+      },
+      {"id": "doCancelWIP", "name": "cancel", "rel": "cancel-wip", "type": "idempotent", "rt": "#wiplist",
+        "title": "Cancel an existing WIP resource",
+        "tag": "choreography",
+        "rel": "cancel wip",
+        "doc": {"value": "An unsafe idempotent action to cancel an existing WIP."}
+      },
+      {"id": "doShareWIP", "name": "share", "rel": "share-wip", "type": "idempotent", "rt": "#wipitem",
+        "title": "Share/save an existing WIP resource",
+        "tag": "choreography",
+        "rel": "share wip",
+        "doc": {"value": "An unsafe idempotent action to share/publish an existing WIP."}
+      },
+      {"id": "doStatusWIP", "name": "status", "rel": "status-wip", "type": "idempotent", "rt": "#wipitem",
+        "title": "Modify the status of an exsiting WIP resource",
+        "tag": "choreography",
+        "rel": "status wip",
+        "doc": {"value": "An unsafe idempotent action to update the status (ready, working, done, cancelled) of an existing WIP."}
+      },
+      {"id": "doSubmitWIP", "name": "submit", "rel": "submit-wip", "type": "idempotent", "rt": "#wipitem",
+        "title": "Submit (for final acceptance) a completed WIP Rresource.",
+        "tag": "choreography",
+        "rel": "submit wip",
+        "doc": {"value": "An unsafe idempotent action to update an existing WIP."}
+      }
+    ]
+  }
+}

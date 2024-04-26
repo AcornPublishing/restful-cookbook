@@ -1,0 +1,26 @@
+{
+  "alps": {
+    "version": "1.0",
+    "title": "Combined Semantic Profiles for RWMBook",
+    "doc": {"value": "**THIS IS AN UNSTABLE DRAFT DOCUMENT**\n\nThis ALPS document links together all the existing ALPS semantifc profiles for the [RWMBook](http://b.mamund.com/rwmbook)." },
+    "descriptor": [
+      {"id": "home", "type": "semantic", "rel": "home", "tag": "taxonomy",
+        "descriptor": [
+          {"href": "https://rwmbook.github.io/alps-documents/meta-preferences/meta-preferences.json#goMetaPreferences"},
+          {"href": "https://rwmbook.github.io/alps-documents/health/health.json#goHealth"},
+          {"href": "https://rwmbook.github.io/alps-documents/query-metadata/query-metadata.json#goQueryMetadata"},
+          {"href": "https://rwmbook.github.io/alps-documents/apis-json/apis.json#goAPIsJSON"},
+          {"href": "https://rwmbook.github.io/alps-documents/mru/mru.json#goMRU"},
+          {"href": "https://rwmbook.github.io/alps-documents/related/related.json#goRelated"},
+          {"href": "https://rwmbook.github.io/alps-documents/list/list.json#goList"},
+          {"href": "https://rwmbook.github.io/alps-documents/wip/wip.json#goListWIP"},
+          {"href": "https://rwmbook.github.io/alps-documents/accepted/accepted.json#goAccepted"},
+          {"href": "https://rwmbook.github.io/alps-documents/partial-submit/partial-submit.json#goForm"},
+          {"href": "https://rwmbook.github.io/alps-documents/replay/replay.json#goReplayList"},
+          {"href": "https://rwmbook.github.io/alps-documents/watch/watch.json#goWatchResource"},
+          {"href": "https://rwmbook.github.io/alps-documents/workflow-progress/workflow-progress.json#goWFProgress"}
+        ]
+      }
+    ]
+  }
+}

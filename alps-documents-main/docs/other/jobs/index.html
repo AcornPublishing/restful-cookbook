@@ -1,0 +1,110 @@
+<html lang="en">
+<head>
+    <title>RESTful Job Control</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 25px;
+        }
+    
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="markdown-body">
+        <h1>RESTful Job Control</h1>
+
+<p><em>A recipe for supporting  general workflow management for independent service interfaces</em><br />
+<br />
+ This profile provides a basic set of actions and metadata for orchestrating independent services on the open web.<br />
+<br />
+Each <a href="https://rwmbook.github.io/alps-documents/other/jobs/docs/semantic.jobRecord.html"><strong>job</strong></a> contains one or more <a href="https://rwmbook.github.io/alps-documents/other/jobs/docs/semantic.taskRecord.html"><strong>tasks</strong></a>. The set of <strong>tasks</strong> in each <strong>job</strong> MUST be able to run in parallel. Each <strong>task</strong> SHOULD be <em>repeatable</em> and <em>reversible</em>. Each <strong>job</strong> SHOULD be <em>restartable</em> and <em>reentrant</em>.<br />
+<br />
+To run a <strong>job</strong>, the <strong>job</strong> document should be submitted to a <em>workflow engine</em>. Upon recieving the document the workflow engine will return a <code>202 Accepted</code> while the tasks are processed and will eventually return a <code>200 OK</code> or a <code>4xx/5xx</code> HTTP status with the completed response. Upon completion of a <strong>job</strong>, that <strong>job</strong> document MAY be archived for future reference (or re-execution) and the appropriate link (<code>jobSuccessURL</code> or <code>jobFailedURL</code>) SHOULD be activated.<br />
+<br />
+Compliant Workflow engines MUST be prepared to handle the <code>taskURL</code>, <code>taskRollbackURL</code>, and <code>taskRerunURL</code> properties as well as monitor/update progress via <code>taskStatus</code> and <code>jobStatus</code>. The engines SHOULD also monitor the <code>jobMaxTTL</code> and <code>taskMaxTTL</code> values and cancel jobs where the maximum run time has been exceeded.<br />
+<br />
+<strong>Tasks</strong> that need to be run in a fixed sequence MUST be separated into individual <strong>job</strong> documents and those <strong>job</strong> documents can be run in fixed order as each <strong>job</strong> successfully completes.<br />
+<br />
+<strong>NOTE:</strong> Workflow <em>authoring</em> services MAY be separate from workflow <em>execution</em> services. The editor and the engine don't need to be hosted within the same service interface.<br />
+<br />
+For more on <strong>RESTful Job Control</strong> see <a href="http://b.mamund.com/rwmbook">RESTful Web API Patterns and Practices Cookbook</a>.</p>
+
+<ul>
+<li><a href="jobs-alps.json">ALPS</a></li>
+<li><a href="docs/asd.html">Application State Diagram</a></li>
+<li>Semantic Descriptors
+
+<ul>
+<li><a href="docs/idempotent.doJobCancel.html">doJobCancel</a> (idempotent), Request to cancel this outstanding job (using DELETE)</li>
+<li><a href="docs/idempotent.doJobContinue.html">doJobContinue</a> (idempotent), Request to contineu this job from where it last left off</li>
+<li><a href="docs/idempotent.doJobCreate.html">doJobCreate</a> (idempotent), Create a new job record.</li>
+<li><a href="docs/idempotent.doJobFailed.html">doJobFailed</a> (idempotent), Navigate to the failed resource</li>
+<li><a href="docs/idempotent.doJobRemove.html">doJobRemove</a> (idempotent), remove job record (via DELETE).</li>
+<li><a href="docs/idempotent.doJobRestart.html">doJobRestart</a> (idempotent), Request to restart this job from teh beginning</li>
+<li><a href="docs/idempotent.doJobSuccess.html">doJobSuccess</a> (idempotent), Navigate to the delayed response resource</li>
+<li><a href="docs/idempotent.doJobUpdate.html">doJobUpdate</a> (idempotent), Update existing job item resource</li>
+<li><a href="docs/idempotent.doTaskCancel.html">doTaskCancel</a> (idempotent), Cancel the task</li>
+<li><a href="docs/idempotent.doTaskRerun.html">doTaskRerun</a> (idempotent), Force rerun the task</li>
+<li><a href="docs/idempotent.doTaskRollback.html">doTaskRollback</a> (idempotent), Rollback the task</li>
+<li><a href="docs/idempotent.doTaskStart.html">doTaskStart</a> (idempotent), Start a task</li>
+<li><a href="docs/idempotent.doTaskUpdate.html">doTaskUpdate</a> (idempotent), Update the task</li>
+<li><a href="docs/safe.goHome.html">goHome</a> (safe), Navigate to the home resource</li>
+<li><a href="docs/safe.goJobFilter.html">goJobFilter</a> (safe), Filter the jobs list resource</li>
+<li><a href="docs/safe.goJobItem.html">goJobItem</a> (safe), Navigate to the job item resource</li>
+<li><a href="docs/safe.goJobList.html">goJobList</a> (safe), Navigate to the jobs resource</li>
+<li><a href="docs/semantic.home.html">home</a> (semantic), Home resource</li>
+<li><a href="docs/semantic.jobCancelled.html">jobCancelled</a> (semantic), Cancelled job resource</li>
+<li><a href="docs/semantic.jobCancelURL.html">jobCancelURL</a> (semantic), URL to cancel this job</li>
+<li><a href="docs/semantic.jobContinueURL.html">jobContinueURL</a> (semantic), URL to continue this job where it last left off.</li>
+<li><a href="docs/semantic.jobDateCreated.html">jobDateCreated</a> (semantic), Indicates the date/time (UTC) this resource was first created).</li>
+<li><a href="docs/semantic.jobDateUpdated.html">jobDateUpdated</a> (semantic), Indicates the last date/time (UTC) this resource was modified).</li>
+<li><a href="docs/semantic.jobDescription.html">jobDescription</a> (semantic), Human-readable text that describes this document.</li>
+<li><a href="docs/semantic.jobFailed.html">jobFailed</a> (semantic), Failed job resource</li>
+<li><a href="docs/semantic.jobFailedURL.html">jobFailedURL</a> (semantic), URL to follow after a failed job run of this job resource</li>
+<li><a href="docs/semantic.jobID.html">jobID</a> (semantic), unique identifier for this job resource.</li>
+<li><a href="docs/semantic.jobItem.html">jobItem</a> (semantic), Job item resource</li>
+<li><a href="docs/semantic.jobList.html">jobList</a> (semantic), Job list resource</li>
+<li><a href="docs/semantic.jobMaxTTL.html">jobMaxTTL</a> (semantic), Indicates the maximum amount of time (in <em>seconds</em>) this resource is considered valid.</li>
+<li><a href="docs/semantic.jobRecord.html">jobRecord</a> (semantic), A job record (which has a collection of tasks)</li>
+<li><a href="docs/semantic.jobRestartURL.html">jobRestartURL</a> (semantic), URL to restart this jobfrom the very beginning.</li>
+<li><a href="docs/semantic.jobStatus.html">jobStatus</a> (semantic), Indicates resource status (pending, working, completed, failed)</li>
+<li><a href="docs/semantic.jobSuccess.html">jobSuccess</a> (semantic), Successful job completion resource</li>
+<li><a href="docs/semantic.jobSuccessURL.html">jobSuccessURL</a> (semantic), URL to follow after successful completion of this job resource</li>
+<li><a href="docs/semantic.jobURL.html">jobURL</a> (semantic), URL of this job resource document</li>
+<li><a href="docs/semantic.stateID.html">stateID</a> (semantic), unique identifier for the state resource for this job.</li>
+<li><a href="docs/semantic.taskCancelURL.html">taskCancelURL</a> (semantic), URL to cancel task</li>
+<li><a href="docs/semantic.taskDescription.html">taskDescription</a> (semantic), Human-readable text that describes this task.</li>
+<li><a href="docs/semantic.taskID.html">taskID</a> (semantic), unique identifier for this task.</li>
+<li><a href="docs/semantic.taskMaxTTL.html">taskMaxTTL</a> (semantic), Indicates the maximum amount of time (in <em>seconds</em>) this task is considered valid.</li>
+<li><a href="docs/semantic.taskMessage.html">taskMessage</a> (semantic), Human-readable text that contains any messages related to the task.</li>
+<li><a href="docs/semantic.taskRecord.html">taskRecord</a> (semantic), A task record (part of a job)</li>
+<li><a href="docs/semantic.taskRerunURL.html">taskRerunURL</a> (semantic), Forced Rerun URL of the task</li>
+<li><a href="docs/semantic.taskRollbackURL.html">taskRollbackURL</a> (semantic), Rollback URL of the task</li>
+<li><a href="docs/semantic.taskStartDateTime.html">taskStartDateTime</a> (semantic), Indicates the date/time (UTC) processing started.</li>
+<li><a href="docs/semantic.taskStartURL.html">taskStartURL</a> (semantic), Starting URL of the task</li>
+<li><a href="docs/semantic.taskStatus.html">taskStatus</a> (semantic), Indicates resource status (pending, working, completed, failed)</li>
+<li><a href="docs/semantic.taskStopDateTime.html">taskStopDateTime</a> (semantic), Indicates the date/time (UTC) processing stopped).</li>
+<li><a href="docs/semantic.taskURL.html">taskURL</a> (semantic), URL of the task resrouce</li>
+</ul></li>
+<li>Tags
+
+<ul>
+<li><a href="docs/tag.choreography.html">choreography</a></li>
+<li><a href="docs/tag.ontology.html">ontology</a></li>
+<li><a href="docs/tag.taxonomy.html">taxonomy</a></li>
+</ul></li>
+</ul>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+#
+# open movie database (OMDB) API
+#
+
+# get initial URL (JSON)
+GOTO WITH-URL https://www.omdbapi.com/ WITH-QUERY {"apikey":"5da8eacf","t":"the music man"}
+
+SHOW RESPONSE
+
+# explict call to JSONPATH
+SHOW JPATH $.Title
+SHOW JPATH $.Plot
+
+# implied JSONPATH (based on content type)
+SHOW PATH $.Title
+SHOW PATH $.Plot
+
+# make same request for XML
+GOTO WITH-URL https://www.omdbapi.com/ WITH-QUERY {"apikey":"5da8eacf","t":"the music man","r":"xml"}
+SHOW RESPONSE
+
+SHOW XPATH //movie/@title
+SHOW XPATH //movie/@plot
+
+SHOW PATH //movie/@title
+SHOW PATH //movie/@plot
+
+EXIT
+
+# EOF
+
+

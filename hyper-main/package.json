@@ -1,0 +1,45 @@
+{
+  "name": "@mamund/hyper",
+  "description": "Sample project to explore an interactive shell for hypermedia services",
+  "version": "1.16.1",
+  "main": "./src/index.js",
+  "bin": {
+    "hyper": "src/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webapicookbook/hyper.git"
+  },
+  "keywords": [
+    "hypermedia",
+    "mamund",
+    "rest",
+    "http",
+    "cli",
+    "rwmbook"
+  ],
+  "author": "Mike Amundsen (@mamund)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webapicookbook/hyper/issues"
+  },
+  "dependencies": {
+    "@mamund/hyper": "^1.11.0",
+    "glob": "^7.1.7",
+    "html-prettify": "^1.0.3",
+    "html2json": "^1.0.2",
+    "jsonpath-plus": "^5.0.7",
+    "say": "^0.16.0",
+    "stack-lifo": "^0.1.6",
+    "sync-request": "^6.1.0",
+    "valid-url": "^1.0.9",
+    "xml-formatter": "^2.4.1",
+    "xmldom": "^0.6.0",
+    "xpath": "0.0.32"
+  },
+  "homepage": "https://github.com/webapicookbook/hyper#readme"
+}
